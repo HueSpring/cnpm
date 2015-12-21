@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Danh Sách Các Đề tài</title>
+        <link href="../styles/css/bootstrap.min.css" rel="stylesheet"></link>
+        <script src="../styles/js/jquery-1.11.3.min.js"></script>
+        <script src="../styles/js/bootstrap.min.js"></script>
+        <link href="../styles/main.css" rel="stylesheet"></link>
+        <link href="../styles/css/footer.css" rel="stylesheet"></link>
+        <link href="../styles/css/demo_login.css" rel="stylesheet"></link>
+    </h:head>
+    <h:body>
+        <ui:insert>
+            <ui:include src="../includes/header.xhtml"/>
+            <ui:include src="../includes/header_homestudent.xhtml"/>
+        </ui:insert>
+        <div class="page-wrap">
+            <h:form>
+                <center>
+                    <div class="contentWOtitle">
+                        <div style="margin-top: 20px;">
+                            <h:outputLabel value="Mã Hướng Dẫn"/>
+                            <span>&nbsp;</span>
+                            <h:selectOneMenu id="register" value="#{beanRegister.idregister}" style="width: 40%">
+                                <f:selectItems value="#{beanRegister.getRegistersByIdStudent(beanStudent.idstudent)}" var="itemr"
+                                               itemValue="#{itemr.idregister}" itemLabel="#{itemr.idregister}">
+                                </f:selectItems>
+                                <f:ajax execute="register" render="xem"/>
+                            </h:selectOneMenu>
+                            <span>&nbsp;</span>
+                        </div>
+
+                        <h3>Danh Sách Đề Tài</h3>
+                        <h:dataTable id="xem" class="datatable table table-striped table-bordered"
+                                     style="width: 60%; margin-top: 15px;" value="#{beanTopic.getTopicsByIdregister(beanRegister.idregister)}"
+                                     var="itemt">
+                            <h:column>
+                                <f:facet name="header">STT</f:facet>
+                                <h:outputText value="#{rowCounter.row}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Tên Đề Tài</f:facet>
+                                <h:outputText value="#{itemt.nametopic}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Mô Tả</f:facet>
+                                <h:outputText value="#{itemt.description}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Hướng Dẫn</f:facet>
+                                <h:outputText value="#{itemt.guide}"/>
+                            </h:column>
+                        </h:dataTable>
+                    </div>
+                </center>
+            </h:form>
+        </div>
+        <ui:insert>
+            <ui:include src="../includes/footer.xhtml"/>
+        </ui:insert>
+    </h:body>
+</html>
+

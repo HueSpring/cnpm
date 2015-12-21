@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Thông Báo Cho Giảng Viên</title>
+        <link href="../styles/css/bootstrap.min.css" rel="stylesheet"></link>
+        <script src="../styles/js/jquery-1.11.3.min.js"></script>
+        <script src="../styles/js/bootstrap.min.js"></script>
+        <link href="../styles/main.css" rel="stylesheet"></link>
+        <link href="../styles/css/footer.css" rel="stylesheet"></link>
+        <link href="../styles/css/demo_login.css" rel="stylesheet"></link>
+    </h:head>
+    <h:body>
+        <ui:insert>
+            <ui:include src="../includes/header.xhtml"/>
+            <ui:include src="../includes/header_homeadmin.xhtml"/>
+        </ui:insert>
+
+        <div class="page-wrap">
+            <div class="container">
+                <h:form>
+                    <h1 style="text-align: center;"> Thông báo tới giảng viên </h1>
+                    <h:outputLabel style="margin-left: 10%;" value="Tiêu đề"></h:outputLabel><br/>
+                    <h:inputText value="#{beanAnnouncerment.subject}" style="width: 80%; margin-left: 10%;"></h:inputText>
+                    <br/>
+                    <h:outputLabel style="margin-left: 10%;" value="Nội dung"></h:outputLabel><br/>
+                    <h:inputTextarea value="#{beanAnnouncerment.content}" style="width: 80%; margin-left: 10%; height: 500px;"></h:inputTextarea>
+                    <br/>
+                    <h:commandButton value="Đăng" class="btn btn-primary btn-block btn-large" 
+                                     action="#{beanAnnouncerment.annouceToLecturer()}"
+                                     style="width: 100px; float: right; margin-right: 115px; margin-top: 10px;"/>
+                </h:form>
+            </div>
+        </div>
+        <ui:insert>
+            <ui:include src="../includes/footer.xhtml"/> 
+        </ui:insert>
+    </h:body>
+</html>
+

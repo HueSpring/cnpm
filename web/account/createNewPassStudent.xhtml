@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Tạo Mật Khẩu Mới Cho Sinh Viên</title>
+        <link href="../styles/css/bootstrap.min.css" rel="stylesheet"></link>
+        <script src="../styles/js/jquery-1.11.3.min.js"></script>
+        <script src="../styles/js/bootstrap.min.js"></script>
+        <link href="../styles/main.css" rel="stylesheet"></link>
+        <link href="../styles/css/footer.css" rel="stylesheet"></link>
+        <link href="../styles/css/demo_login.css" rel="stylesheet"></link>
+    </h:head>
+    <h:body>
+        <ui:insert>
+            <ui:include src="../includes/header.xhtml"/>
+            <ui:include src="../includes/header_homeadmin.xhtml"/>
+        </ui:insert>
+        <div class="page-wrap">
+            <h:form style="color: #000846;">
+                <center style="color: #000846;">
+                    <div class="title">
+                        <div class="titlecontent">
+                            Thông Tin Cá Nhân
+                        </div>
+                    </div>
+                    <div class="content">
+                        <h:panelGrid style="margin-top: 0px; width: 90%;" columns="2" columnClasses="thirty, thirty">
+                            <h:outputLabel value="Mã sinh viên"/>
+                            <h:inputText style="margin-bottom: 5px;" value="#{beanStudent.idname}"/>
+                            <h:commandButton value="Xem Tên Sinh Viên"
+                                             class="btn btn-primary btn-block btn-large" style="height: 30px;" 
+                                             action="#{beanStudent.seeNameStudent()}"/>
+                            <h:inputText style="margin-bottom: 5px;" readonly="true"
+                                         value="#{beanStudent.getNameStudentByIdStudent(beanStudent.idstudent)}"/>
+                            <h:outputLabel value="Mật khẩu"/>
+                            <h:inputText style="margin-bottom: 5px;" value="#{beanStudent.password}"/>
+                            <f:facet name="footer">
+                                <h:commandButton value="Tạo" class="btn btn-primary btn-block btn-large" 
+                                                 style="alignment-adjust: central; height: 30px;" 
+                                                 action="#{beanStudent.updateAccountStudent()}"/>
+                            </f:facet>
+                        </h:panelGrid>
+
+                        <h1 style="font-size: 15px; color: red; margin-bottom: 130px;">#{beanStudent.message}</h1>
+                    </div>
+                </center>
+            </h:form>
+        </div>
+        <ui:insert>
+            <ui:include src="../includes/footer.xhtml"/> 
+        </ui:insert>
+    </h:body>
+</html>
+

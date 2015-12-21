@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Danh Sách Đề Tài</title>
+        <link href="../styles/css/bootstrap.min.css" rel="stylesheet"></link>
+        <script src="../styles/js/jquery-1.11.3.min.js"></script>
+        <script src="../styles/js/bootstrap.min.js"></script>
+        <link href="../styles/main.css" rel="stylesheet"></link>
+        <link href="../styles/css/footer.css" rel="stylesheet"></link>
+        <!--<link href="../styles/css/demo_login.css" rel="stylesheet"></link>-->
+    </h:head>
+    <h:body>
+        <ui:insert>
+            <ui:include src="../includes/header.xhtml"/>
+            <ui:include src="../includes/header_homelecturer.xhtml"/>
+        </ui:insert>
+        <div class="page-wrap">
+            <h:form>
+                <center>
+                    <div class="contentWOtitle" style="margin-top: 10px; border-top: 1px solid #CDCDCD;">
+                        <h:outputLabel style="color: blue; padding-top: 40px;" value="Mã Hướng Dẫn "></h:outputLabel>
+                        <span>&nbsp;</span>
+
+                        <h:selectOneMenu value="#{beanRegister.idregister}" style="width: 30%; height: 30px;">
+                            <f:selectItems value="#{beanRegister.getRegistersByIdAccount(beanAccount.idaccount)}" var="item"
+                                           itemValue="#{item.idregister}" itemLabel="#{item.idregister}"/>
+                        </h:selectOneMenu>
+                        <span>&nbsp;</span>
+                        <h:commandButton value="Xem" 
+                                         action="#{beanTopic.setIdregister(beanRegister.idregister)}"/>
+                        <h1>Danh sách đề tài đồ án <strong>#{beanProject.getNameProjectByIdRegister(beanRegister.idregister)}</strong></h1>
+                        <h:dataTable class="datatable table table-striped table-bordered" 
+                                     style="margin-top: 10px; width: 90%;"
+                                     value="#{beanTopic.getTopicsByIdregister(beanRegister.idregister)}"
+                                     var="items">
+                            <h:column>
+                                <f:facet name="header">STT</f:facet>
+                                <h:outputText value="#{rowCounter.row}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Mã đề tài</f:facet>
+                                <h:outputText value="#{items.idtopic}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Tên đề tài</f:facet>
+                                <h:outputText value="#{items.nametopic}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Mô tả</f:facet>
+                                <h:outputText value="#{items.description}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Hướng dẫn</f:facet>
+                                <h:outputText value="#{items.guide}"/>
+                            </h:column>
+                        </h:dataTable>
+                    </div>
+                </center>
+            </h:form>
+        </div>
+        <ui:insert>
+            <ui:include src="../includes/footer.xhtml"/> 
+        </ui:insert>
+    </h:body>
+</html>
+

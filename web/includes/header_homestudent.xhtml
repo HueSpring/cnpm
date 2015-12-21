@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition>
+            <h:form style="border: 1px solid green; border-right: none; background-color: #DEFFFD;">
+                <div>
+                    <div class="container">
+                        <ul class="nav nav-tabs">
+                            <li style="padding-top: 5px;"><h:commandLink action="#{beanStudent.destroyHomeStudent()}">TRANG CÁ NHÂN</h:commandLink></li>
+                            <li class="dropdown" style="padding-top: 5px;">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">ĐĂNG KÍ<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><h:commandLink action="#{beanStudent.identifyRegisterLecturer()}">Giảng Viên Hướng Dẫn</h:commandLink></li>
+                                    <li><h:commandLink action="#{beanStudent.identifyRegisterGroup()}">Nhóm Đồ Án</h:commandLink></li>                        
+                                    <li><a href="registerTopic.xhtml">Đề Tài</a></li>                        
+                                    <li><a href="registerSchedule.xhtml">Lịch Thông Đồ Án</a></li>                        
+                                </ul>
+                            </li>
+                            <li class="dropdown" style="padding-top: 5px;">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">TÌNH TRẠNG<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="allRegister.xhtml">Giảng Viên Hướng Dẫn</a></li>
+                                    <li><a href="listAllGroup.xhtml">Nhóm Đồ Án</a></li>                        
+                                    <li><a href="listAllTopic.xhtml">Đề Tài</a></li>                        
+                                </ul>
+                            </li>
+                            <li class="dropdown" style="padding-top: 5px;">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">DANH SÁCH ĐÃ ĐĂNG KÍ<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="registeredLecturer.xhtml">Giảng Viên Hướng Dẫn</a></li>
+                                    <li><a href="listGroup.xhtml">Nhóm Đồ Án</a></li>                        
+                                    <li><a href="listTopic.xhtml">Đề Tài</a></li>                        
+                                </ul>
+                            </li>
+                            <h:commandLink class="navbar-brand" value="ĐĂNG XUẤT"
+                                           style="text-decoration: none; font-size: 13px; float: right; padding-top: 17px;"
+                                           action="#{beanStudent.logout()}">
+                                <span class="glyphicon glyphicon-log-out"></span>
+                            </h:commandLink>
+                            <h:outputLabel value="#{beanStudent.name}" style="font-size: 13px; float: right;padding-top: 15px; margin-right: 5px;"/>
+                            <h:outputLabel class="navbar-brand" value="Chào, SINH VIÊN"
+                                           style="text-decoration: none; font-size: 13px; float: right; color: #337AB7; padding-top: 17px;">
+                            </h:outputLabel>
+                        </ul>
+                    </div>
+                </div>
+            </h:form>
+        </ui:composition>
+    </h:body>
+</html>
+

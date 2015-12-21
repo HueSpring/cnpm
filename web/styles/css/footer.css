@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+}
+
+html, body {
+    height: 100%;
+}
+.page-wrap {
+    min-height: 100%;
+    /* equal to footer height */
+    margin-top: 0px;
+    padding-top: 0px;
+    margin-bottom: -65px; 
+    margin-left: 10%;
+    width: 80%;
+    border-top: none;
+}
+
+.page-wrap:after {
+    content: "";
+    display: block;
+    
+}
+.site-footer, .page-wrap:after {
+    /* .push must be the same height as footer */
+    height: 65px;
+}
+.site-footer {
+    width: 100%;
+    color: #E3FFFF;
+    background: #005583;
+}

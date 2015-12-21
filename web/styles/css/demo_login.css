@@ -1,0 +1,45 @@
+
+input { 
+	width: 100%; 
+	margin-bottom: 10px; 
+	background: white;
+	border: none;
+	outline: none;
+	padding: 10px;
+	font-size: 13px;
+	color: black;
+	border: 1px solid rgba(0,0,0,0.3);
+	border-radius: 4px;
+}
+
+.readOnly{
+    background-color: #E1E1E1;
+}
+.twenty{
+    padding-left: 3%;
+    padding-right: 3%;
+    width: 20%;
+}
+.thirty{
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 30%;
+}
+
+.fourty{
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 40%;
+}
+
+.sixty{
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 60%;
+}
+.normal{
+    
+}
+.padding-left-5px{
+    padding-left: 10px;
+}

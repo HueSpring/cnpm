@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Tạo Đề Tài</title>
+        <link href="../styles/css/bootstrap.min.css" rel="stylesheet"></link>
+        <script src="../styles/js/jquery-1.11.3.min.js"></script>
+        <script src="../styles/js/bootstrap.min.js"></script>
+        <link href="../styles/main.css" rel="stylesheet"></link>
+        <link href="../styles/css/footer.css" rel="stylesheet"></link>
+        <!--<link href="../styles/css/demo_login.css" rel="stylesheet"></link>-->
+    </h:head>
+    <h:body>
+        <ui:insert>
+            <ui:include src="../includes/header.xhtml"/>
+            <ui:include src="../includes/header_homelecturer.xhtml"/>
+        </ui:insert>
+        <div class="page-wrap">
+            <h:form>
+                <center>
+                    <div class="contentWOtitle">
+                        <h3>Đồ án <strong>#{beanProject.getNameProjectByIdRegister(beanTopic.idregister)}</strong></h3>
+                        <h5 style="color: blue;">Mã đăng kí: #{beanTopic.idregister}</h5>
+
+                        <h:dataTable class="datatable table table-striped table-bordered"
+                                     value="#{beanTopic.getTopicsByIdregister(beanTopic.idregister)}"
+                                     var="items"
+                                     style="width: 80%;margin-top: 10px;">
+                            <h:column>
+                                <f:facet name="header">STT</f:facet>
+                                    #{rowCounter.row}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Mã Đề tài</f:facet>
+                                <h:outputText value="#{items.idtopic}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Tên Đề tài</f:facet>
+                                <h:outputText value="#{items.nametopic}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Mô tả</f:facet>
+                                <h:outputText value="#{items.description}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Hướng dẫn</f:facet>
+                                <h:outputText value="#{items.guide}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header"></f:facet>
+                                <h:commandButton value="Hủy" action="#{beanTopic.deleteTopics(items.idtopic, beanTopic.idregister)}"/>
+                            </h:column>
+                        </h:dataTable>
+                        <h:panelGrid style="margin-top: 0px; width: 60%;" columns="2" columnClasses="fourty, sixty">
+                            <h:outputLabel value="Mã đề tài"/>
+                            <h:inputText value="#{beanTopic.idregister}.D#{beanTopic.numberTopic(beanTopic.idregister)}" readonly="true" class="readOnly" style="width: 100%"/>
+                            <h:outputLabel value="Tên đề tài"/>
+                            <h:inputText value="#{beanTopic.nametopic}" style="width: 100%"/>
+                            <h:outputLabel value="Mô tả"/>
+                            <h:inputTextarea value="#{beanTopic.description}" style="width: 100%"/>
+                            <h:outputLabel value="Hướng dẫn"/>
+                            <h:inputTextarea value="#{beanTopic.guide}" style="width: 100%"/>
+                            <h:outputLabel value=""/>
+                            <h:commandButton style=" margin-top: 10px; margin-bottom: 10px; width: 50%"
+                                             value="Tạo" action="#{beanTopic.createTopics()}"
+                                             class="btn btn-primary btn-block btn-large"/>
+                        </h:panelGrid>
+                    </div>
+                </center>
+            </h:form>
+        </div>
+        <ui:insert>
+            <ui:include src="../includes/footer.xhtml"/> 
+        </ui:insert>
+    </h:body>
+</html>
+

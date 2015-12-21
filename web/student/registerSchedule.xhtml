@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Đăng Kí Lịch Thông Đồ Án</title>
+        <link href="../styles/css/bootstrap.min.css" rel="stylesheet"></link>
+        <script src="../styles/js/jquery-1.11.3.min.js"></script>
+        <script src="../styles/js/bootstrap.min.js"></script>
+        <link href="../styles/main.css" rel="stylesheet"></link>
+        <link href="../styles/css/footer.css" rel="stylesheet"></link>
+        <!--<link href="../styles/css/demo_login.css" rel="stylesheet"></link>-->
+    </h:head>
+    <h:body>
+        <ui:insert>
+            <ui:include src="../includes/header.xhtml"/>
+            <ui:include src="../includes/header_homestudent.xhtml"/>
+        </ui:insert>
+        <div class="page-wrap">
+            <center>
+                <h:form>
+                    <div class="title">
+                        <div class="titlecontent">
+                            Đăng kí lịch thông đồ án
+                        </div>
+                    </div>
+                    <div class="content">
+                        <h:outputLabel style="color: blue;"
+                                       value="Các nhóm đăng kí các khung thời gian có thể. GVHD sẽ chọn ra 1 buổi phù hợp để tiến hành thông đồ án"/>
+                        <div style="margin-top: 20px;">
+                            <h:outputLabel value="Mã Hướng Dẫn"/>
+                            <span>&nbsp;</span>
+                            <h:selectOneMenu value="#{beanSchedule.idregister}" style="width: 40%">
+                                <f:selectItems value="#{beanRegister.getRegistersByIdStudent(beanStudent.idstudent)}" var="itemr"
+                                               itemValue="#{itemr.idregister}" itemLabel="#{itemr.idregister}">
+                                </f:selectItems>
+                            </h:selectOneMenu>
+                            <span>&nbsp;</span>
+                            <h:commandButton value="Xem" action="#{beanSchedule.setIdregister(beanSchedule.idregister)}"/>
+                        </div>
+
+                        <h:dataTable id="xem" class="datatable table table-striped table-bordered"
+                                     value="#{beanSchedule.getSchedulesByIdRegisterIdentify(beanSchedule.idregister)}"
+                                     var="items" 
+                                     style="width: 80%;margin-top: 10px;">
+                            <h:column>
+                                <f:facet name="header">STT</f:facet>
+                                    #{rowCounter.row}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Giờ</f:facet>
+                                <h:outputText value="#{items.time}">
+                                    <f:convertDateTime type="time" timeZone="Asia/Bangkok" parent="HH:mm:ss"/>
+                                </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Ngày</f:facet>
+                                <h:outputText value="#{items.date}">
+                                    <f:convertDateTime type="date" timeZone="Asia/Bangkok" pattern="dd/MM/yyyy"/>
+                                </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Địa Chỉ</f:facet>
+                                <h:outputText value="#{items.address}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Tình Trạng</f:facet>
+                                <h:outputText value="Đã quá thời hạn" rendered="#{!beanSchedule.check(items.time, items.date)}"/>
+                                <h:outputText value="Đã đăng kí " rendered="#{beanSchedule.checkBoth(items.time, items.date, items.idschedule, beanTopic.getGroupByIdRegisterIdStudent(items.idregister, beanStudent.idstudent).idgroup)}"/>
+
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">SL ĐK / SL nhóm</f:facet>
+                                <h:outputText value="#{beanSchedule.countGroupsRS(items.idschedule)} / #{beanTopic.countGroup(beanSchedule.idregister)} " rendered="#{beanSchedule.check(items.time, items.date)}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header"></f:facet>
+                                <h:commandButton value="Đăng Kí"
+                                                 rendered="#{beanSchedule.checkregister(items.time, items.date, items.idschedule, beanTopic.getGroupByIdRegisterIdStudent(items.idregister, beanStudent.idstudent).idgroup)}"
+                                                 action="#{beanSchedule.createGroupHasSchedules(items.idschedule, beanTopic.getGroupByIdRegisterIdStudent(items.idregister, beanStudent.idstudent).idgroup)}"/>
+                                <h:commandButton value="Hủy"
+                                                 rendered="#{beanSchedule.checkBoth(items.time, items.date, items.idschedule, beanTopic.getGroupByIdRegisterIdStudent(items.idregister, beanStudent.idstudent).idgroup)}"
+                                                 action="#{beanSchedule.deleteGroupHasSchedule(beanTopic.getGroupByIdRegisterIdStudent(items.idregister, beanStudent.idstudent).idgroup, items.idschedule)}"/>
+                            </h:column>
+                        </h:dataTable>
+                    </div>
+                </h:form>
+            </center>
+        </div>
+    </h:body>
+</html>
+

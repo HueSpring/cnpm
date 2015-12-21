@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+        <link href="../styles/css/bootstrap.min.css" rel="stylesheet"></link>
+        <script src="../styles/js/jquery-1.11.3.min.js"></script>
+        <script src="../styles/js/bootstrap.min.js"></script>
+        <link href="../styles/main.css" rel="stylesheet"></link>
+    </h:head>
+    <h:body>
+       <ui:composition>
+           <h:form style="border: 1px solid green; border-right: none; background-color: #FFEA9B;">
+                <div>
+                    <div class="container" styte="color: yellow;">
+                        <ul class="nav nav-tabs">
+                            <li style="padding-top: 5px;"><h:commandLink action="#{beanAccount.destroyHomeLecturer()}">TRANG CÁ NHÂN</h:commandLink></li>
+                            <li class="dropdown" style="padding-top: 5px;">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">THIẾT LẬP<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="createTimeGroup.xhtml">Gia Hạn Đăng Kí Nhóm</a></li>
+                                    <li><a href="prepareTopicSchedule.xhtml">Đề Tài - Lịch Thông ĐA</a></li>                        
+                                </ul>
+                            </li>
+                            <li class="dropdown" style="padding-top: 5px;">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">DANH SÁCH<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="listProjectByIdAccount.xhtml">Đồ Án</a></li>
+                                    <li><a href="listTopic.xhtml">Đề Tài</a></li>                        
+                                    <li><a href="listGroupTopic.xhtml">Nhóm Sinh Viên - Đề Tài</a></li>                        
+                                </ul>
+                            </li>
+                            <h:commandLink class="navbar-brand" value="ĐĂNG XUẤT"
+                                           style="text-decoration: none; font-size: 13px; float: right; padding-top: 17px;"
+                                           action="#{beanAccount.logout()}">
+                                <span class="glyphicon glyphicon-log-out"></span>
+                            </h:commandLink>
+                            <h:commandLink class="navbar-brand" value="GIÁO VỤ" action="#{beanAccount.transferToAdmin()}"
+                                           style="text-decoration: none; font-size: 13px; float: right; padding-top: 17px;"
+                                           rendered="#{beanAccount.identifyRole()}">
+                                <span class="glyphicon glyphicon-transfer"></span>
+                            </h:commandLink>
+                            <h:outputLabel value="#{beanAccount.name}" style="font-size: 13px; float: right;padding-top: 15px;"/>
+                            <h:outputLabel class="navbar-brand" value="Chào, GIẢNG VIÊN"
+                                           style="text-decoration: none; font-size: 13px; float: right; color: #337AB7; padding-top: 17px;">
+                            </h:outputLabel>
+                        </ul>
+                    </div>
+                </div>
+            </h:form>
+        </ui:composition>
+    </h:body>
+</html>
+
